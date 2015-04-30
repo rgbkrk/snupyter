@@ -2,9 +2,10 @@ var zmq = require('zmq')
   , sock = zmq.socket('sub');
 
 var argv = require('minimist')(process.argv.slice(2));
-
 var connFile = argv._[0];
 var config = require(connFile);
+
+console.log(config);
 
 function formConnectionString(config, channel) {
   var portDelimiter = ":";
@@ -39,7 +40,8 @@ function Snupyter(connectionJSON) {
      this.iopubSocket.subscribe('');
      
      this.iopubSocket.on("message", function (msg) {
-       console.log(msg);
+       
+       console.log(msg.toString('utf8'));
      });
     
 }
