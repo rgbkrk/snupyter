@@ -1,0 +1,30 @@
+{
+  "name": "snupyter",
+  "version": "0.0.1",
+  "description": "Snoop on Jupyter kernels",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rgbkrk/snupyter.git"
+  },
+  "keywords": [
+    "jupyter",
+    "snupyter",
+    "jupiter",
+    "kernel",
+    "ipython",
+    "tomfoolery"
+  ],
+  "author": "Kyle Kelley",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/rgbkrk/snupyter/issues"
+  },
+  "homepage": "https://github.com/rgbkrk/snupyter",
+  "dependencies": {
+    "zmq": "^2.11.0"
+  }
+}
