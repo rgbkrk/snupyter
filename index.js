@@ -1,9 +1,12 @@
+/* global process */
 var zmq = require('zmq')
   , sock = zmq.socket('sub');
 
 var argv = require('minimist')(process.argv.slice(2));
 var connFile = argv._[0];
 var config = require(connFile);
+
+var Message = require('ijavascript/lib/jp.js');
 
 console.log(config);
 
@@ -39,10 +42,16 @@ function Snupyter(connectionJSON) {
      this.iopubSocket.connect(this.iopubURL);
      this.iopubSocket.subscribe('');
      
-     this.iopubSocket.on("message", function (msg) {
-       
-       console.log(msg.toString('utf8'));
-     });
+     this.iopubSocket.on("message", onIOPubMessage.bind(this));
+     
+     function onIOPubMessage() {
+       var msg = new Message(
+         arguments,
+         this.connectionJSON.signature_scheme.slice("hmac-".length),
+         this.connectionJSON.key
+       );
+       console.dir(msg);
+     }
     
 }
 
