@@ -1,7 +1,10 @@
 var zmq = require('zmq')
   , sock = zmq.socket('sub');
 
-var config = require(process.argv[2]);
+var argv = require('minimist')(process.argv.slice(2));
+
+var connFile = argv._[0];
+var config = require(connFile);
 
 function formConnectionString(config, channel) {
   var portDelimiter = ":";
